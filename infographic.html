@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Begin CSS -->
 <head>
+<title>Unanet</title>
+<!-- Begin CSS -->
 <style>
 	html, body {
 		overflow: hidden;
@@ -35,9 +36,9 @@
 		filter: brightness(90%);
 		scroll-snap-align: center;
 	}
-	.card:hover {
+	.card.hovered {
 		filter: brightness(100%);
-		text-shadow: 0px 0px 20px black;
+		/*box-shadow: 0px 0px 30px 0px black;*/
 	}
 	.core {
 		max-width: 100px;
@@ -57,6 +58,10 @@
 		max-width: 20px;
 		z-index: 999;
 		cursor: pointer;
+		border-radius: 10px;
+	}
+	.hotspot:hover {
+		box-shadow: 0px 0px 10px 0px black;
 	}
 	.hotspot-1 {
 		top: -165px;
@@ -69,6 +74,9 @@
 	.hotspot-3 {
 		top: 55px;
 		left: calc(50% - 200px);
+	}
+	.image-map {
+		z-index: 999;
 	}
 	.row {
 		position: relative;
@@ -88,12 +96,17 @@
 <body>
 	<div id="infographic-container" class="infographic-container">
 		<!-- TODO add hotspot click functions -->
+		<!-- TODO draw lines -->
+		<!-- TODO add text -->
 		<div>
 			<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
 		</div>
 		<div class="row">
-			<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;">
-			<div id="hotspots_project_mgmt" style="display: none;">
+			<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;" usemap="#map_project_mgmt">
+			<map name="map_project_mgmt" class="image-map">
+				<area id="map_project_mgmt" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			</map>
+			<div id="hotspots_project_mgmt" class="hotspot-container" style="display: none;">
 				<img id="" class="hotspot hotspot-1" src="hotspot.png">
 				<img id="" class="hotspot hotspot-2" src="hotspot.png">
 				<img id="" class="hotspot hotspot-3" src="hotspot.png">
@@ -103,8 +116,11 @@
 			<img id="core_2" src="core.png" class="core" style="z-index: 108;">
 		</div>
 		<div class="row">
-			<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;">
-			<div id="hotspots_track_time" style="display: none;">
+			<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;" usemap="#map_track_time">
+			<map name="map_track_time" class="image-map">
+				<area id="map_track_time" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			</map>
+			<div id="hotspots_track_time" class="hotspot-container" style="display: none;">
 				<img id="" class="hotspot hotspot-1" src="hotspot.png">
 				<img id="" class="hotspot hotspot-2" src="hotspot.png">
 				<img id="" class="hotspot hotspot-3" src="hotspot.png">
@@ -114,8 +130,11 @@
 			<img id="core_3" src="core.png" class="core" style="z-index: 106;">
 		</div>
 		<div class="row">
-			<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;">
-			<div id="hotspots_forecast" style="display: none;">
+			<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;" usemap="#map_forecast">
+			<map name="map_forecast" class="image-map">
+				<area id="map_forecast" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			</map>
+			<div id="hotspots_forecast" class="hotspot-container" style="display: none;">
 				<img id="" class="hotspot hotspot-1" src="hotspot.png">
 				<img id="" class="hotspot hotspot-2" src="hotspot.png">
 				<img id="" class="hotspot hotspot-3" src="hotspot.png">
@@ -125,8 +144,11 @@
 			<img id="core_4" src="core.png" class="core" style="z-index: 104;">
 		</div>
 		<div class="row">
-			<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;">
-			<div id="hotspots_financials" style="display: none;">
+			<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;" usemap="#map_financials">
+			<map name="map_financials" class="image-map">
+				<area id="map_financials" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			</map>
+			<div id="hotspots_financials" class="hotspot-container" style="display: none;">
 				<img id="" class="hotspot hotspot-1" src="hotspot.png">
 				<img id="" class="hotspot hotspot-2" src="hotspot.png">
 				<img id="" class="hotspot hotspot-3" src="hotspot.png">
@@ -136,8 +158,11 @@
 			<img id="core_5" src="core.png" class="core" style="z-index: 102;">
 		</div>
 		<div class="row">
-			<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;">
-			<div id="hotspots_pipeline" style="display: none;">
+			<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;" usemap="#map_pipeline">
+			<map name="map_pipeline" class="image-map">
+				<area id="map_pipeline" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			</map>
+			<div id="hotspots_pipeline" class="hotspot-container" style="display: none;">
 				<img id="" class="hotspot hotspot-1" src="hotspot.png">
 				<img id="" class="hotspot hotspot-2" src="hotspot.png">
 				<img id="" class="hotspot hotspot-3" src="hotspot.png">
@@ -177,6 +202,14 @@
     		'#hotspots_forecast',
     		'#hotspots_financials',
     		'#hotspots_pipeline'
+    	];
+
+    	const areas = [
+    		'#map_project_mgmt',
+    		'#map_track_time',
+    		'#map_forecast',
+    		'#map_financials',
+    		'#map_pipeline'
     	];
 
     	const card_offsets = [
@@ -260,13 +293,13 @@
 				if (card == (id)) {
 					var index = cards.indexOf(card);
 
-					// show hotpots after zoom animation is complete (1500ms)
+					// show hotpots after zoom animation is complete
 					$(card).addClass("zoom");
 					setTimeout(function() {
 						$(hotspots[index]).show();
-					}, 1500);
+					}, 1300);
 
-					// get cores above and below
+					// get cores above and below to widen spacing
 					var core_above = "#core_"+(index+1);
 					var core_below = "#core_"+(index+2);
 
@@ -287,10 +320,21 @@
 	    window.onload = function() {
 
 	    	// add click function to cards
-	    	cards.forEach(function(card) {
-	    		$(card).click(function() {
-	    			scrollTo("#"+$(this).attr('id'));
+	    	areas.forEach(function(area) {
+	    		$(area).click(function() {
+		    		var id = $(this).attr('id').split("map_")[1];
+	    			scrollTo("#card_"+id);
 	    		});
+	    	});
+
+	    	// add/remove element highlighting on image-map hover
+	    	$(".image-map area").mouseenter(function() {
+	    		var id = $(this).attr('id').split("map_")[1];
+	    		$("#card_"+id).addClass("hovered");
+	    	});
+	    	$(".image-map area").mouseleave(function() {
+	    		var id = $(this).attr('id').split("map_")[1];
+	    		$("#card_"+id).removeClass("hovered");
 	    	});
 
 	    	// detect when scroll-snapping is complete
@@ -305,21 +349,21 @@
 		    		var cardHeight = $("#card_project_mgmt").height();
 		    		var offset = (windowHeight - cardHeight) / 2;
 		    		var current_card;
-			    	// find current centered element
+			    	// find currently snapped element
 			    	cards.forEach(function(card) {
 			    		var top = $(card).offset().top;
 			    		if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
 			    			current_card = card;
 			    		}
 			    	});
-			    	// scroll to element if not already selected
+			    	// zoom to element if not already selected
 			    	if (!$(current_card).hasClass('zoom')) {
 			    		scrollTo(current_card);
 			    	}
 			    }, 100);
 			});
 
-			// select first card
+			// select first card on page load
 	    	setTimeout(scrollTo, 1000, "#card_project_mgmt");
 	    }
 
