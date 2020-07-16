@@ -16,23 +16,24 @@
 		background-repeat: no-repeat;
 		overflow: scroll;
 		height: 100vh;
-		scroll-snap-type: y mandatory;
+		scroll-snap-type: y proximity;
+	}
+	.infographic-container div {
+		display: block;
+		width: 100%;
+		text-align: center;
 	}
 	.infographic-container img {
-		margin: auto;
-		display: block;
 		position: relative;
 		-webkit-transition-duration: 1.2s;
 		-moz-transition-duration: 1.2s;
 		-o-transition-duration: 1.2s;
 	}
 	.card {
-		max-width: 400px;
-		/*max-width: 48.9%;*/
-		margin-top: -130px !important;
+		max-width: 500px;
+		margin-top: -170px !important;
 		filter: brightness(90%);
 		scroll-snap-align: center;
-		scroll-snap-stop: always;
 	}
 	.card:hover {
 		filter: brightness(100%);
@@ -40,17 +41,39 @@
 	}
 	.core {
 		max-width: 100px;
-		/*max-width: 10.3%;*/
-		margin-top: -200px !important;
+		margin-top: -250px !important;
 	}
 	.core-separated {
-		margin-top: -150px !important;
+		margin-top: -200px !important;
 	}
 	.core-top {
 		padding-top: calc(50vh - 200px) !important;
 	}
 	.core-bottom {
 		padding-bottom: calc(50vh - 200px) !important;
+	}
+	.hotspot {
+		position: absolute !important;
+		max-width: 20px;
+		z-index: 999;
+		cursor: pointer;
+	}
+	.hotspot-1 {
+		top: -165px;
+		left: calc(50% + 120px);
+	}
+	.hotspot-2 {
+		top: -90px;
+		left: calc(50% + 240px);
+	}
+	.hotspot-3 {
+		top: 55px;
+		left: calc(50% - 200px);
+	}
+	.row {
+		position: relative;
+		left: 0;
+		top: 0;
 	}
 	.zoom {
 		-webkit-transform:scale(1.3);
@@ -63,30 +86,75 @@
 <!-- End CSS -->
 
 <body>
-	<div id="infographic-container" class="infographic-container" style="">
-		<!-- TODO add hotspots -->
-		<!-- TODO add text lines -->
-		<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
-		<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;">
-		<img id="core_2" src="core.png" class="core" style="z-index: 108;">
-		<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;">
-		<img id="core_3" src="core.png" class="core" style="z-index: 106;">
-		<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;">
-		<img id="core_4" src="core.png" class="core" style="z-index: 104;">
-		<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;">
-		<img id="core_5" src="core.png" class="core" style="z-index: 102;">
-		<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;">
-		<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
+	<div id="infographic-container" class="infographic-container">
+		<!-- TODO add hotspot click functions -->
+		<div>
+			<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
+		</div>
+		<div class="row">
+			<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;">
+			<div id="hotspots_project_mgmt" style="display: none;">
+				<img id="" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="" class="hotspot hotspot-2" src="hotspot.png">
+				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+			</div>
+		</div>
+		<div>
+			<img id="core_2" src="core.png" class="core" style="z-index: 108;">
+		</div>
+		<div class="row">
+			<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;">
+			<div id="hotspots_track_time" style="display: none;">
+				<img id="" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="" class="hotspot hotspot-2" src="hotspot.png">
+				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+			</div>
+		</div>
+		<div>
+			<img id="core_3" src="core.png" class="core" style="z-index: 106;">
+		</div>
+		<div class="row">
+			<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;">
+			<div id="hotspots_forecast" style="display: none;">
+				<img id="" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="" class="hotspot hotspot-2" src="hotspot.png">
+				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+			</div>
+		</div>
+		<div>
+			<img id="core_4" src="core.png" class="core" style="z-index: 104;">
+		</div>
+		<div class="row">
+			<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;">
+			<div id="hotspots_financials" style="display: none;">
+				<img id="" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="" class="hotspot hotspot-2" src="hotspot.png">
+				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+			</div>
+		</div>
+		<div>
+			<img id="core_5" src="core.png" class="core" style="z-index: 102;">
+		</div>
+		<div class="row">
+			<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;">
+			<div id="hotspots_pipeline" style="display: none;">
+				<img id="" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="" class="hotspot hotspot-2" src="hotspot.png">
+				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+			</div>
+		</div>
+		<div>
+			<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
+		</div>
 	</div>
 
 	<!-- Begin JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="scroll-snap.js"></script>
     <script type="text/javascript">
 
     	var lastScrollTop;
 
-    	var cards = [
+    	const cards = [
     		'#card_project_mgmt',
     		'#card_track_time',
     		'#card_forecast',
@@ -94,7 +162,7 @@
     		'#card_pipeline'
     	];
 
-    	var cores = [
+    	const cores = [
     		'#core_1',
     		'#core_2',
     		'#core_3',
@@ -103,12 +171,20 @@
     		'#core_6'
     	];
 
-    	var card_offsets = [
-    		72,
-    		280,
-    		488,
-    		696,
-    		905
+    	const hotspots = [
+    		'#hotspots_project_mgmt',
+    		'#hotspots_track_time',
+    		'#hotspots_forecast',
+    		'#hotspots_financials',
+    		'#hotspots_pipeline'
+    	];
+
+    	const card_offsets = [
+    		17,
+    		204,
+    		391,
+    		578,
+    		766
     	];
 
     	// functions for enabling / disabling scrolling
@@ -158,8 +234,15 @@
 
     	// snap scroll to element
     	function scrollTo(id) {
+    		// return if we clicked the currently selected element
+    		if ($(id).hasClass('zoom')) { return; }
 
-    		// disable scrolling and scroll-snap while executing
+    		// hide hotspots
+    		hotspots.forEach(function(hotspot) {
+    			$(hotspot).hide();
+    		});
+
+    		// disable scrolling and scroll-snapping while executing
     		disableScroll();
 
     		// get scrollTop offset value based on element id
@@ -175,10 +258,15 @@
     	function zoomToCard(id) {
 			cards.forEach(function(card) {
 				if (card == (id)) {
+					var index = cards.indexOf(card);
+
+					// show hotpots after zoom animation is complete (1500ms)
 					$(card).addClass("zoom");
+					setTimeout(function() {
+						$(hotspots[index]).show();
+					}, 1500);
 
 					// get cores above and below
-					var index = cards.indexOf(card);
 					var core_above = "#core_"+(index+1);
 					var core_below = "#core_"+(index+2);
 
@@ -190,9 +278,6 @@
 							$(core).removeClass('core-separated');
 						}
 					});
-
-					// TODO show hotpots
-
 				} else {
 					$(card).removeClass("zoom");
 				}
