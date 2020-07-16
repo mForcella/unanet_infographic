@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Begin CSS -->
+<head>
+<style>
+	html, body {
+		overflow: hidden;
+		height: 100vh;
+	}
+	.infographic-container {
+		max-width: 1360px;
+		margin: auto;
+		background-image: url('background_scaled.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		overflow: scroll;
+		height: 100vh;
+		scroll-snap-type: y mandatory;
+	}
+	.infographic-container img {
+		margin: auto;
+		display: block;
+		position: relative;
+		-webkit-transition-duration: 1.2s;
+		-moz-transition-duration: 1.2s;
+		-o-transition-duration: 1.2s;
+	}
+	.card {
+		max-width: 400px;
+		/*max-width: 48.9%;*/
+		margin-top: -130px !important;
+		filter: brightness(90%);
+		scroll-snap-align: center;
+		scroll-snap-stop: always;
+	}
+	.card:hover {
+		filter: brightness(100%);
+		text-shadow: 0px 0px 20px black;
+	}
+	.core {
+		max-width: 100px;
+		/*max-width: 10.3%;*/
+		margin-top: -200px !important;
+	}
+	.core-separated {
+		margin-top: -150px !important;
+	}
+	.core-top {
+		padding-top: calc(50vh - 200px) !important;
+	}
+	.core-bottom {
+		padding-bottom: calc(50vh - 200px) !important;
+	}
+	.zoom {
+		-webkit-transform:scale(1.3);
+		-moz-transform:scale(1.3);
+		-o-transform:scale(1.3);
+		filter: brightness(100%);
+	}
+</style>
+</head>
+<!-- End CSS -->
+
+<body>
+	<div id="infographic-container" class="infographic-container" style="">
+		<!-- TODO add hotspots -->
+		<!-- TODO add text lines -->
+		<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
+		<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;">
+		<img id="core_2" src="core.png" class="core" style="z-index: 108;">
+		<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;">
+		<img id="core_3" src="core.png" class="core" style="z-index: 106;">
+		<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;">
+		<img id="core_4" src="core.png" class="core" style="z-index: 104;">
+		<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;">
+		<img id="core_5" src="core.png" class="core" style="z-index: 102;">
+		<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;">
+		<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
+	</div>
+
+	<!-- Begin JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="scroll-snap.js"></script>
+    <script type="text/javascript">
+
+    	var lastScrollTop;
+
+    	var cards = [
+    		'#card_project_mgmt',
+    		'#card_track_time',
+    		'#card_forecast',
+    		'#card_financials',
+    		'#card_pipeline'
+    	];
+
+    	var cores = [
+    		'#core_1',
+    		'#core_2',
+    		'#core_3',
+    		'#core_4',
+    		'#core_5',
+    		'#core_6'
+    	];
+
+    	var card_offsets = [
+    		72,
+    		280,
+    		488,
+    		696,
+    		905
+    	];
+
+    	// functions for enabling / disabling scrolling
+    	// source: https://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily
+		var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+		// prevent mouse scroll events
+		function preventDefault(e) {
+		 	e.preventDefault();
+		}
+
+		// prevent keystroke scroll events
+		function preventDefaultForScrollKeys(e) {
+			if (keys[e.keyCode]) {
+				preventDefault(e);
+				return false;
+			}
+		}
+
+		// detect browser support
+		var supportsPassive = false;
+		try {
+			window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+				get: function () { supportsPassive = true; } 
+			}));
+		} catch(e) {}
+
+		// Chrome requires { passive: false }
+		var wheelOpt = supportsPassive ? { passive: false } : false;
+		var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+    	function disableScroll() {
+			window.addEventListener('DOMMouseScroll', preventDefault, false);
+			window.addEventListener(wheelEvent, preventDefault, wheelOpt);
+			window.addEventListener('touchmove', preventDefault, wheelOpt);
+			window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+			$("#infographic-container").css("scroll-snap-type", "none");
+		}
+
+		function enableScroll() {
+			window.removeEventListener('DOMMouseScroll', preventDefault, false);
+			window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+			window.removeEventListener('touchmove', preventDefault, wheelOpt);
+			window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+			$("#infographic-container").css("scroll-snap-type", "y mandatory");
+		}
+
+    	// snap scroll to element
+    	function scrollTo(id) {
+
+    		// disable scrolling and scroll-snap while executing
+    		disableScroll();
+
+    		// get scrollTop offset value based on element id
+    		var offset = card_offsets[cards.indexOf(id)];
+			$('#infographic-container').animate({scrollTop: offset}, 1200, function() {
+				enableScroll();
+			});
+
+			// zoom to card layer
+			zoomToCard(id);
+    	}
+
+    	function zoomToCard(id) {
+			cards.forEach(function(card) {
+				if (card == (id)) {
+					$(card).addClass("zoom");
+
+					// get cores above and below
+					var index = cards.indexOf(card);
+					var core_above = "#core_"+(index+1);
+					var core_below = "#core_"+(index+2);
+
+					// separate layers
+					cores.forEach(function(core) {
+						if (core == core_above || core == core_below) {
+							$(core).addClass('core-separated');
+						} else {
+							$(core).removeClass('core-separated');
+						}
+					});
+
+					// TODO show hotpots
+
+				} else {
+					$(card).removeClass("zoom");
+				}
+			});
+    	}
+
+	    window.onload = function() {
+
+	    	// add click function to cards
+	    	cards.forEach(function(card) {
+	    		$(card).click(function() {
+	    			scrollTo("#"+$(this).attr('id'));
+	    		});
+	    	});
+
+	    	// detect when scroll-snapping is complete
+	    	// source: https://developpaper.com/implementation-of-css-scroll-snap-event-stop-and-element-position-detection/
+	    	var timer = null;
+			var container = document.getElementById('infographic-container');
+			container.addEventListener('scroll', function () {
+			    clearTimeout(timer);
+			    // no scroll event detected for 100ms - select snapped-to element
+			    timer = setTimeout(function () {
+			    	var windowHeight = $(window).height();
+		    		var cardHeight = $("#card_project_mgmt").height();
+		    		var offset = (windowHeight - cardHeight) / 2;
+		    		var current_card;
+			    	// find current centered element
+			    	cards.forEach(function(card) {
+			    		var top = $(card).offset().top;
+			    		if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
+			    			current_card = card;
+			    		}
+			    	});
+			    	// scroll to element if not already selected
+			    	if (!$(current_card).hasClass('zoom')) {
+			    		scrollTo(current_card);
+			    	}
+			    }, 100);
+			});
+
+			// select first card
+	    	setTimeout(scrollTo, 1000, "#card_project_mgmt");
+	    }
+
+    </script>
+    <!-- End JavaScript -->
+
+</body>
+</html>
