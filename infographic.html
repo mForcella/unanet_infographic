@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <title>Unanet</title>
+
 <!-- Begin CSS -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 	html, body {
 		overflow: hidden;
 		height: 100vh;
+		font-family: 'Montserrat', sans-serif;
+	}
+	::-webkit-scrollbar {
+	    width: 0px;
 	}
 	.infographic-container {
-		max-width: 1360px;
+		max-width: 1364px;
 		margin: auto;
 		background-image: url('background_scaled.png');
 		background-size: cover;
 		background-repeat: no-repeat;
-		overflow: scroll;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		height: 100vh;
 		scroll-snap-type: y proximity;
 	}
-	.infographic-container div {
+	.infographic-container .row {
 		display: block;
-		width: 100%;
 		text-align: center;
 	}
 	.infographic-container img {
@@ -31,21 +36,26 @@
 		-o-transition-duration: 1.2s;
 	}
 	.card {
-		max-width: 500px;
-		margin-top: -170px !important;
+		max-width: 650px;
+		margin-top: -230px;
 		filter: brightness(90%);
 		scroll-snap-align: center;
 	}
 	.card.hovered {
 		filter: brightness(100%);
-		/*box-shadow: 0px 0px 30px 0px black;*/
+	}
+	.zoom {
+		-webkit-transform:scale(1.2);
+		-moz-transform:scale(1.2);
+		-o-transform:scale(1.2);
+		filter: brightness(100%);
 	}
 	.core {
-		max-width: 100px;
-		margin-top: -250px !important;
+		max-width: 142px;
+		margin-top: -350px !important;
 	}
 	.core-separated {
-		margin-top: -200px !important;
+		margin-top: -275px !important;
 	}
 	.core-top {
 		padding-top: calc(50vh - 200px) !important;
@@ -55,123 +65,393 @@
 	}
 	.hotspot {
 		position: absolute !important;
-		max-width: 20px;
+		max-width: 27px;
 		z-index: 999;
 		cursor: pointer;
-		border-radius: 10px;
+		border-radius: 15px;
 	}
 	.hotspot:hover {
 		box-shadow: 0px 0px 10px 0px black;
 	}
 	.hotspot-1 {
-		top: -165px;
-		left: calc(50% + 120px);
+		top: -215px;
+		left: calc(50% + 140px);
 	}
 	.hotspot-2 {
-		top: -90px;
-		left: calc(50% + 240px);
+		top: -135px;
+		left: calc(50% + 280px);
 	}
 	.hotspot-3 {
-		top: 55px;
-		left: calc(50% - 200px);
+		top: 5px;
+		left: calc(50% - 305px);
 	}
-	.image-map {
+	.hotspot-container {
+		text-align: left !important;
+	}
+	.line {
+		border-bottom: 1px solid #123859;
+		width: 600px !important;
 		z-index: 999;
+		position: absolute;
+	}
+	.line-1 {
+		top: -203px;
+		left: calc(50% + 165px);
+	}
+	.line-2a {
+		display: inline-block !important;
+		top: -83px;
+		left: calc(50% + 285px);
+		width: 100px !important;
+		-moz-transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
+	.line-2b {
+		top: -48px;
+		left: calc(50% + 370px);
+	}
+	.line-3 {
+		top: 18px;
+		left: calc(50% - 905px);
+	}
+	.popup-container {
+		display: none;
+	}
+	.title {
+		font-size: 18px;
+		font-weight: 600;
+		color: #123859;
+		margin-bottom: 20px;
+	}
+	.text {
+		font-size: 13px;
+		font-weight: 400;
+		color: #123859;
+	}
+	.popup {
+		position: absolute;
+		z-index: 999;
+	}
+	.popup-1 {
+		top: -233px;
+		right: 30px;
+		width: 240px;
+	}
+	.popup-2 {
+		top: -78px;
+		right: 30px;
+		width: 240px;
+	}
+	.popup-3 {
+		top: -12px;
+		left: 30px;
+		width: 340px;
 	}
 	.row {
 		position: relative;
 		left: 0;
 		top: 0;
 	}
-	.zoom {
-		-webkit-transform:scale(1.3);
-		-moz-transform:scale(1.3);
-		-o-transform:scale(1.3);
-		filter: brightness(100%);
-	}
 </style>
 </head>
 <!-- End CSS -->
 
 <body>
+	<!-- Begin Infographic Content -->
 	<div id="infographic-container" class="infographic-container">
-		<!-- TODO add hotspot click functions -->
-		<!-- TODO draw lines -->
-		<!-- TODO add text -->
-		<div>
+		<div class="row">
 			<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
 		</div>
 		<div class="row">
-			<img id="card_project_mgmt" src="card_project_mgmt.png" class="card" style="z-index: 109;" usemap="#map_project_mgmt">
+			<img id="card_project_mgmt" src="card_project_mgmt_scaled.png" class="card" style="z-index: 109;" usemap="#map_project_mgmt">
 			<map name="map_project_mgmt" class="image-map">
-				<area id="map_project_mgmt" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+			    <area id="map_project_mgmt" coords="-1,226, 420,-1, 648,144, 220,374" shape="poly">
+    			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
+    			<area id="overlap_map_track_time" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289" shape="poly">
 			</map>
 			<div id="hotspots_project_mgmt" class="hotspot-container" style="display: none;">
-				<img id="" class="hotspot hotspot-1" src="hotspot.png">
-				<img id="" class="hotspot hotspot-2" src="hotspot.png">
-				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+				<img id="hotspot_1_project_mgmt" class="hotspot hotspot-1" src="hotspot.png">
+				<div id="popup_1_project_mgmt" class="popup-container">
+					<div class="line line-1"></div>
+					<div class="popup popup-1">
+						<div class="title">PERSONAS</div>
+						<div class="text">
+							<b>C-Suite:</b> Driver better, faster
+							decision-making with
+							single-source, real-time visibility<br><br>
+							<b>Financials:</b> Reduce risk of
+							overages with real-time insights
+							into project budget status<br><br>
+							<b>PM:</b> Help identify gaps in
+							productivity with clarity on project
+							and portfolio status
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_2_project_mgmt" class="hotspot hotspot-2" src="hotspot.png">
+				<div id="popup_2_project_mgmt" class="popup-container">
+					<div class="line line-2a"></div>
+					<div class="line line-2b"></div>
+					<div class="popup popup-2">
+						<div class="title">TESTIMONIAL</div>
+						<div class="text">
+							"Unanet is a sytem that not only helps
+							us manage our projects but also, with
+							its fully integrated financials, means a
+							single transaction base, which is the
+							ideal."<br><br>
+							&horbar;Hugh Shaw, CFO,<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i>Ventera Corporation</i>
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_3_project_mgmt" class="hotspot hotspot-3" src="hotspot.png">
+				<div id="popup_3_project_mgmt" class="popup-container">
+					<div class="line line-3"></div>
+					<div class="popup popup-3">
+						<div class="title">PROJECT MANAGEMENT</div>
+						<div class="text">
+							Unlock visibility and insights for better<br>
+							decision-making<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Supporting how you need to work<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Real-time alerts and collaboration<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Power project budgeting and costing<br>
+						</div>
+					</div>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<img id="core_2" src="core.png" class="core" style="z-index: 108;">
 		</div>
 		<div class="row">
-			<img id="card_track_time" src="card_track_time.png" class="card" style="z-index: 107;" usemap="#map_track_time">
+			<img id="card_track_time" src="card_track_time_scaled.png" class="card" style="z-index: 107;" usemap="#map_track_time">
 			<map name="map_track_time" class="image-map">
-				<area id="map_track_time" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+				<area id="map_track_time" shape="poly" coords="-1,226, 420,-1, 648,144, 220,374">
+    			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
+			    <area id="overlap_map_forecast" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_track_time" class="hotspot-container" style="display: none;">
-				<img id="" class="hotspot hotspot-1" src="hotspot.png">
-				<img id="" class="hotspot hotspot-2" src="hotspot.png">
-				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+				<img id="hotspot_1_track_time" class="hotspot hotspot-1" src="hotspot.png">
+				<div id="popup_1_track_time" class="popup-container">
+					<div class="line line-1"></div>
+					<div class="popup popup-1">
+						<div class="title">PERSONAS</div>
+						<div class="text">
+							<b>C-Suite:</b> Improve productivity and
+							ease stakeholder communications
+							with customizable dashboards<br><br>
+							<b>Financials:</b> Detect budget and cash
+							flow issues early with streamlined
+							visibility<br><br>
+							<b>PM:</b> Help ensure project success
+							with timely tracking of key project
+							requirements
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_2_track_time" class="hotspot hotspot-2" src="hotspot.png">
+				<div id="popup_2_track_time" class="popup-container">
+					<div class="line line-2a"></div>
+					<div class="line line-2b"></div>
+					<div class="popup popup-2">
+						<div class="title">TESTIMONIAL</div>
+						<div class="text">
+							"The visibility into our business has been
+							transformative. We have the data and
+							insight to really drive profit."<br><br>
+							&horbar;David Baker, President,<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i>The Rehancement Group</i>
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_3_track_time" class="hotspot hotspot-3" src="hotspot.png">
+				<div id="popup_3_track_time" class="popup-container">
+					<div class="line line-3"></div>
+					<div class="popup popup-3">
+						<div class="title">TRACK TIME & EXPENSES</div>
+						<div class="text">
+							Unlock powerful real-time tracking of labor<br>
+							and expense<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Maintain DCAA timekeeping compliance<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Easily configure and customize to fit your needs<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Automate processes<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Robust reporting
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<img id="core_3" src="core.png" class="core" style="z-index: 106;">
 		</div>
 		<div class="row">
-			<img id="card_forecast" src="card_forecast.png" class="card" style="z-index: 105;" usemap="#map_forecast">
+			<img id="card_forecast" src="card_forecast_scaled.png" class="card" style="z-index: 105;" usemap="#map_forecast">
 			<map name="map_forecast" class="image-map">
-				<area id="map_forecast" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+				<area id="map_forecast" shape="poly" coords="-1,226, 420,-1, 648,144, 220,374">
+    			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
+			    <area id="overlap_map_financials" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_forecast" class="hotspot-container" style="display: none;">
-				<img id="" class="hotspot hotspot-1" src="hotspot.png">
-				<img id="" class="hotspot hotspot-2" src="hotspot.png">
-				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+				<img id="hotspot_1_forecast" class="hotspot hotspot-1" src="hotspot.png">
+				<div id="popup_1_forecast" class="popup-container">
+					<div class="line line-1"></div>
+					<div class="popup popup-1">
+						<div class="title">PERSONAS</div>
+						<div class="text">
+							<b>C-Suite:</b> Reduce risks and costs
+							with accurate forecasting<br><br>
+							<b>Financials:</b> Help predict future
+							financial health with planning and
+							forecasting precision<br><br>
+							<b>PM:</b> Successfully execute on
+							projects with resource clarity
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_2_forecast" class="hotspot hotspot-2" src="hotspot.png">
+				<div id="popup_2_forecast" class="popup-container">
+					<div class="line line-2a"></div>
+					<div class="line line-2b"></div>
+					<div class="popup popup-2">
+						<div class="title">TESTIMONIAL</div>
+						<div class="text">
+							"We chose Unanet not only becuase we
+							were impressed with the <b>powerful
+							resource scheduling capabilities</b>, the
+							scalability, and operational reliability, but
+							because the company nurtured an
+							<b>efficient, collaborative, and rewarding
+							relationship</b>."<br><br>
+							&horbar;Director of Information Systems,<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;<i>L-3 Communications</i>
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_3_forecast" class="hotspot hotspot-3" src="hotspot.png">
+				<div id="popup_3_forecast" class="popup-container">
+					<div class="line line-3"></div>
+					<div class="popup popup-3">
+						<div class="title">FORECAST & PLAN</div>
+						<div class="text">
+							Unlock the right resources and align<br>
+							your business<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Skills management and resource requests<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Plan future work<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Graphical and period reporting
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<img id="core_4" src="core.png" class="core" style="z-index: 104;">
 		</div>
 		<div class="row">
-			<img id="card_financials" src="card_financials.png" class="card" style="z-index: 103;" usemap="#map_financials">
+			<img id="card_financials" src="card_financials_scaled.png" class="card" style="z-index: 103;" usemap="#map_financials">
 			<map name="map_financials" class="image-map">
-				<area id="map_financials" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+				<area id="map_financials" shape="poly" coords="-1,226, 420,-1, 648,144, 220,374">
+    			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
+			    <area id="overlap_map_pipeline" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_financials" class="hotspot-container" style="display: none;">
-				<img id="" class="hotspot hotspot-1" src="hotspot.png">
-				<img id="" class="hotspot hotspot-2" src="hotspot.png">
-				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+				<img id="hotspot_1_financials" class="hotspot hotspot-1" src="hotspot.png">
+				<div id="popup_1_financials" class="popup-container">
+					<div class="line line-1"></div>
+					<div class="popup popup-1">
+						<div class="title">PERSONAS</div>
+						<div class="text">
+							<b>C-Suite:</b> Reduce errors and costs
+							with robust, customizable
+							reporting<br><br>
+							<b>Financials:</b> Reduce financial risks
+							and costs with high visibility into
+							projects and portfolios<br><br>
+							<b>PM:</b> Ease client communications
+							with accurate, real-time reporting
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_2_financials" class="hotspot hotspot-2" src="hotspot.png">
+				<div id="popup_2_financials" class="popup-container">
+					<div class="line line-2a"></div>
+					<div class="line line-2b"></div>
+					<div class="popup popup-2">
+						<div class="title">TESTIMONIAL</div>
+						<div class="text">
+							"With the Automated Analyst tool, we
+							have <b>reduced the number of errors by
+							27% and we've been able to increase
+							bi-weekly labor efficiency by 33%</b>."<br><br>
+							&horbar;Matthew C., <i>G2 Ops</i>
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_3_financials" class="hotspot hotspot-3" src="hotspot.png">
+				<div id="popup_3_financials" class="popup-container">
+					<div class="line line-3"></div>
+					<div class="popup popup-3">
+						<div class="title">FINANCIALS</div>
+						<div class="text">
+							Unlock one single-source solution for financials<br>
+							and accounting<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Vendor-independent, scalable, reliable tech<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Managed information<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Robust features<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Improve efficiency and planning
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<img id="core_5" src="core.png" class="core" style="z-index: 102;">
 		</div>
 		<div class="row">
-			<img id="card_pipeline" src="card_pipeline.png" class="card" style="z-index: 101;" usemap="#map_pipeline">
+			<img id="card_pipeline" src="card_pipeline_scaled.png" class="card" style="z-index: 101;" usemap="#map_pipeline">
 			<map name="map_pipeline" class="image-map">
-				<area id="map_pipeline" shape="poly" coords="-1,174, 333,-1, 492,111, 167,286">
+				<area id="map_pipeline" shape="poly" coords="-1,226, 420,-1, 648,144, 220,374">
+    			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
 			</map>
 			<div id="hotspots_pipeline" class="hotspot-container" style="display: none;">
-				<img id="" class="hotspot hotspot-1" src="hotspot.png">
-				<img id="" class="hotspot hotspot-2" src="hotspot.png">
-				<img id="" class="hotspot hotspot-3" src="hotspot.png">
+				<img id="hotspot_2_pipeline" class="hotspot hotspot-2" src="hotspot.png">
+				<div id="popup_2_pipeline" class="popup-container">
+					<div class="line line-2a"></div>
+					<div class="line line-2b"></div>
+					<div class="popup popup-2">
+						<div class="title">PERSONAS</div>
+						<div class="text">
+							<b>C-Suite:</b> Efficiently create business
+							strategies with clear visibility into
+							projects<br><br>
+							<b>Financials:</b> Clearly forecast
+							revenue and growth<br><br>
+							<b>PM:</b> Easily track workflow and
+							resources
+						</div>
+					</div>
+				</div>
+				<img id="hotspot_3_pipeline" class="hotspot hotspot-3" src="hotspot.png">
+				<div id="popup_3_pipeline" class="popup-container">
+					<div class="line line-3"></div>
+					<div class="popup popup-3">
+						<div class="title">PIPELINE & CRM</div>
+						<div class="text">
+							Unlock business growth with ERP<br>
+							embedded sales and marketing<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Grow your firm's pipeline<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Organize and manage campaigns<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&#8226;Explore maps with key data
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div>
+		<div class="row">
 			<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
 		</div>
 	</div>
+	<!-- End Infographic Content -->
 
 	<!-- Begin JavaScript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -204,20 +484,12 @@
     		'#hotspots_pipeline'
     	];
 
-    	const areas = [
-    		'#map_project_mgmt',
-    		'#map_track_time',
-    		'#map_forecast',
-    		'#map_financials',
-    		'#map_pipeline'
-    	];
-
     	const card_offsets = [
-    		17,
-    		204,
-    		391,
-    		578,
-    		766
+    		105,
+    		345,
+    		585,
+    		825,
+    		1066
     	];
 
     	// functions for enabling / disabling scrolling
@@ -274,6 +546,7 @@
     		hotspots.forEach(function(hotspot) {
     			$(hotspot).hide();
     		});
+	    	$('.popup-container').hide();
 
     		// disable scrolling and scroll-snapping while executing
     		disableScroll();
@@ -297,7 +570,7 @@
 					$(card).addClass("zoom");
 					setTimeout(function() {
 						$(hotspots[index]).show();
-					}, 1300);
+					}, 1000);
 
 					// get cores above and below to widen spacing
 					var core_above = "#core_"+(index+1);
@@ -319,13 +592,22 @@
 
 	    window.onload = function() {
 
+	    	// dismiss popups on screen click
+	    	$(window).click(function(e) {
+			    if (!e.target.className.includes("hotspot")) {
+	    			$('.popup-container').hide();
+			    }
+			});
+
 	    	// add click function to cards
-	    	areas.forEach(function(area) {
-	    		$(area).click(function() {
-		    		var id = $(this).attr('id').split("map_")[1];
-	    			scrollTo("#card_"+id);
-	    		});
-	    	});
+    		$('area').click(function() {
+	    		var id = $(this).attr('id').split("map_")[1];
+	    		if (id == "core") {
+	    			// TODO core click
+	    		} else {
+    				scrollTo("#card_"+id);
+	    		}
+    		});
 
 	    	// add/remove element highlighting on image-map hover
 	    	$(".image-map area").mouseenter(function() {
@@ -335,6 +617,20 @@
 	    	$(".image-map area").mouseleave(function() {
 	    		var id = $(this).attr('id').split("map_")[1];
 	    		$("#card_"+id).removeClass("hovered");
+	    	});
+
+	    	// hotspot click functions
+	    	$(".hotspot").click(function() {
+	    		var id = $(this).attr('id').split("hotspot_")[1];
+	    		// hide clicked hotspot if already visible
+	    		if ($("#popup_"+id).is(":visible")) {
+	    			$("#popup_"+id).hide();
+	    		} else {
+	    			// hide all hotspots
+	    			$('.popup-container').hide();
+	    			// show clicked hotspot
+	    			$("#popup_"+id).show();
+	    		}
 	    	});
 
 	    	// detect when scroll-snapping is complete
@@ -349,6 +645,7 @@
 		    		var cardHeight = $("#card_project_mgmt").height();
 		    		var offset = (windowHeight - cardHeight) / 2;
 		    		var current_card;
+		    		// console.log($('#infographic-container').scrollTop());
 			    	// find currently snapped element
 			    	cards.forEach(function(card) {
 			    		var top = $(card).offset().top;
