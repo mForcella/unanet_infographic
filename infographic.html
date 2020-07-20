@@ -85,12 +85,16 @@
 		top: 5px;
 		left: calc(50% - 305px);
 	}
+	.core-hotspot {
+		top: -100px;
+		left: calc(50% - 11px);
+	}
 	.hotspot-container {
 		text-align: left !important;
 	}
 	.line {
 		border-bottom: 1px solid #123859;
-		width: 600px !important;
+		width: 700px !important;
 		z-index: 999;
 		position: absolute;
 	}
@@ -113,7 +117,11 @@
 	}
 	.line-3 {
 		top: 18px;
-		left: calc(50% - 905px);
+		left: calc(50% - 1005px);
+	}
+	.line-core {
+		top: -87px;
+		left: calc(50% - 710px);
 	}
 	.popup-container {
 		display: none;
@@ -148,10 +156,21 @@
 		left: 30px;
 		width: 340px;
 	}
+	.popup-core {
+		top: -117px;
+		left: 30px;
+		width: 240px;
+	}
 	.row {
 		position: relative;
 		left: 0;
 		top: 0;
+	}
+	.box {
+		display: inline-block;
+		margin: 0 10px;
+		height: 13px;
+  		width: 13px;
 	}
 </style>
 </head>
@@ -171,6 +190,18 @@
     			<area id="overlap_map_track_time" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289" shape="poly">
 			</map>
 			<div id="hotspots_project_mgmt" class="hotspot-container" style="display: none;">
+				<img id="hotspot_core_project_mgmt" class="hotspot core-hotspot" src="hotspot.png">
+				<div id="popup_core_project_mgmt" class="popup-container">
+					<div class="line line-core"></div>
+					<div class="popup popup-core">
+						<div class="title">UNANET CORE</div>
+						<div class="text">
+							<div class="box" style="background-color: #3DBFF3;"></div>DCAA Compliance<br>
+							<div class="box" style="background-color: #39A43E;"></div>Business Intelligence<br>
+							<div class="box" style="background-color: #43C040;"></div>Automate & Integrate
+						</div>
+					</div>
+				</div>
 				<img id="hotspot_1_project_mgmt" class="hotspot hotspot-1" src="hotspot.png">
 				<div id="popup_1_project_mgmt" class="popup-container">
 					<div class="line line-1"></div>
@@ -232,6 +263,18 @@
 			    <area id="overlap_map_forecast" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_track_time" class="hotspot-container" style="display: none;">
+				<img id="hotspot_core_track_time" class="hotspot core-hotspot" src="hotspot.png">
+				<div id="popup_core_track_time" class="popup-container">
+					<div class="line line-core"></div>
+					<div class="popup popup-core">
+						<div class="title">UNANET CORE</div>
+						<div class="text">
+							<div class="box" style="background-color: #3DBFF3;"></div>DCAA Compliance<br>
+							<div class="box" style="background-color: #39A43E;"></div>Business Intelligence<br>
+							<div class="box" style="background-color: #43C040;"></div>Automate & Integrate
+						</div>
+					</div>
+				</div>
 				<img id="hotspot_1_track_time" class="hotspot hotspot-1" src="hotspot.png">
 				<div id="popup_1_track_time" class="popup-container">
 					<div class="line line-1"></div>
@@ -293,6 +336,18 @@
 			    <area id="overlap_map_financials" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_forecast" class="hotspot-container" style="display: none;">
+				<img id="hotspot_core_forecast" class="hotspot core-hotspot" src="hotspot.png">
+				<div id="popup_core_forecast" class="popup-container">
+					<div class="line line-core"></div>
+					<div class="popup popup-core">
+						<div class="title">UNANET CORE</div>
+						<div class="text">
+							<div class="box" style="background-color: #3DBFF3;"></div>DCAA Compliance<br>
+							<div class="box" style="background-color: #39A43E;"></div>Business Intelligence<br>
+							<div class="box" style="background-color: #43C040;"></div>Automate & Integrate
+						</div>
+					</div>
+				</div>
 				<img id="hotspot_1_forecast" class="hotspot hotspot-1" src="hotspot.png">
 				<div id="popup_1_forecast" class="popup-container">
 					<div class="line line-1"></div>
@@ -355,6 +410,18 @@
 			    <area id="overlap_map_pipeline" shape="poly" coords="400,281, 594,396, 188,396, 276,348, 277,396, 384,396, 384,289">
 			</map>
 			<div id="hotspots_financials" class="hotspot-container" style="display: none;">
+				<img id="hotspot_core_financials" class="hotspot core-hotspot" src="hotspot.png">
+				<div id="popup_core_financials" class="popup-container">
+					<div class="line line-core"></div>
+					<div class="popup popup-core">
+						<div class="title">UNANET CORE</div>
+						<div class="text">
+							<div class="box" style="background-color: #3DBFF3;"></div>DCAA Compliance<br>
+							<div class="box" style="background-color: #39A43E;"></div>Business Intelligence<br>
+							<div class="box" style="background-color: #43C040;"></div>Automate & Integrate
+						</div>
+					</div>
+				</div>
 				<img id="hotspot_1_financials" class="hotspot hotspot-1" src="hotspot.png">
 				<div id="popup_1_financials" class="popup-container">
 					<div class="line line-1"></div>
@@ -414,6 +481,18 @@
     			<area id="overlap_map_core" coords="279,345, 381,291, 381,396, 280,396" shape="poly">
 			</map>
 			<div id="hotspots_pipeline" class="hotspot-container" style="display: none;">
+				<img id="hotspot_core_pipeline" class="hotspot core-hotspot" src="hotspot.png">
+				<div id="popup_core_pipeline" class="popup-container">
+					<div class="line line-core"></div>
+					<div class="popup popup-core">
+						<div class="title">UNANET CORE</div>
+						<div class="text">
+							<div class="box" style="background-color: #3DBFF3;"></div>DCAA Compliance<br>
+							<div class="box" style="background-color: #39A43E;"></div>Business Intelligence<br>
+							<div class="box" style="background-color: #43C040;"></div>Automate & Integrate
+						</div>
+					</div>
+				</div>
 				<img id="hotspot_2_pipeline" class="hotspot hotspot-2" src="hotspot.png">
 				<div id="popup_2_pipeline" class="popup-container">
 					<div class="line line-2a"></div>
@@ -485,11 +564,11 @@
     	];
 
     	const card_offsets = [
-    		105,
-    		345,
-    		585,
-    		825,
-    		1066
+    		0,
+    		212,
+    		452,
+    		693,
+    		933
     	];
 
     	// functions for enabling / disabling scrolling
@@ -602,9 +681,7 @@
 	    	// add click function to cards
     		$('area').click(function() {
 	    		var id = $(this).attr('id').split("map_")[1];
-	    		if (id == "core") {
-	    			// TODO core click
-	    		} else {
+	    		if (id != "core") {
     				scrollTo("#card_"+id);
 	    		}
     		});
@@ -622,6 +699,8 @@
 	    	// hotspot click functions
 	    	$(".hotspot").click(function() {
 	    		var id = $(this).attr('id').split("hotspot_")[1];
+	    		// TODO core hotspot click
+
 	    		// hide clicked hotspot if already visible
 	    		if ($("#popup_"+id).is(":visible")) {
 	    			$("#popup_"+id).hide();
