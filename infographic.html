@@ -10,6 +10,7 @@
 		overflow: hidden;
 		height: 100vh;
 		font-family: 'Montserrat', sans-serif;
+		color: #123859;
 	}
 	::-webkit-scrollbar {
 	    width: 0px;
@@ -35,10 +36,22 @@
 		-moz-transition-duration: 1.2s;
 		-o-transition-duration: 1.2s;
 	}
+	.header {
+		text-align: center;
+		font-size: 8vw;
+		color: white;
+		font-weight: 600;
+		background-image: url('header_background.png');
+		background-size: cover;
+		height: 300px;
+		padding-top: 50px;
+		margin-bottom: -200px;
+		/*scroll-snap-align: center;*/
+	}
 	.card {
 		max-width: 650px;
 		margin-top: -230px;
-		filter: brightness(90%);
+		filter: brightness(85%);
 		scroll-snap-align: center;
 	}
 	.card.hovered {
@@ -77,6 +90,10 @@
 		top: -215px;
 		left: calc(50% + 140px);
 	}
+	.hotspot-1a {
+		top: -185px;
+		left: calc(50% + 190px);
+	}
 	.hotspot-2 {
 		top: -135px;
 		left: calc(50% + 280px);
@@ -102,6 +119,10 @@
 		top: -203px;
 		left: calc(50% + 165px);
 	}
+	.line-1a {
+		top: -173px;
+		left: calc(50% + 215px);
+	}
 	.line-2a {
 		display: inline-block !important;
 		top: -83px;
@@ -124,32 +145,33 @@
 		left: calc(50% - 710px);
 	}
 	.popup-container {
-		display: none;
+		/*display: none;*/
 	}
 	.title {
 		font-size: 18px;
 		font-weight: 600;
-		color: #123859;
 		margin-bottom: 20px;
 	}
 	.text {
 		font-size: 13px;
 		font-weight: 400;
-		color: #123859;
 	}
 	.popup {
 		position: absolute;
 		z-index: 999;
+		width: 240px;
 	}
 	.popup-1 {
 		top: -233px;
 		right: 30px;
-		width: 240px;
+	}
+	.popup-1a {
+		top: -203px;
+		right: 30px;
 	}
 	.popup-2 {
 		top: -78px;
 		right: 30px;
-		width: 240px;
 	}
 	.popup-3 {
 		top: -12px;
@@ -159,12 +181,9 @@
 	.popup-core {
 		top: -117px;
 		left: 30px;
-		width: 240px;
 	}
 	.row {
 		position: relative;
-		left: 0;
-		top: 0;
 	}
 	.box {
 		display: inline-block;
@@ -179,6 +198,7 @@
 <body>
 	<!-- Begin Infographic Content -->
 	<div id="infographic-container" class="infographic-container">
+		<div class="header">UNLOCK YOUR DATA</div>
 		<div class="row">
 			<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
 		</div>
@@ -202,10 +222,10 @@
 						</div>
 					</div>
 				</div>
-				<img id="hotspot_1_project_mgmt" class="hotspot hotspot-1" src="hotspot.png">
+				<img id="hotspot_1_project_mgmt" class="hotspot hotspot-1a" src="hotspot.png">
 				<div id="popup_1_project_mgmt" class="popup-container">
-					<div class="line line-1"></div>
-					<div class="popup popup-1">
+					<div class="line line-1a"></div>
+					<div class="popup popup-1a">
 						<div class="title">PERSONAS</div>
 						<div class="text">
 							<b>C-Suite:</b> Driver better, faster
@@ -529,6 +549,7 @@
 		<div class="row">
 			<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
 		</div>
+		<img src="footer.png" style="width: 90%; padding-bottom: 50px; margin-top: -150px;">
 	</div>
 	<!-- End Infographic Content -->
 
@@ -564,11 +585,11 @@
     	];
 
     	const card_offsets = [
-    		0,
-    		212,
-    		452,
-    		693,
-    		933
+    		122,
+    		362,
+    		602,
+    		843,
+    		1083
     	];
 
     	// functions for enabling / disabling scrolling
@@ -699,8 +720,6 @@
 	    	// hotspot click functions
 	    	$(".hotspot").click(function() {
 	    		var id = $(this).attr('id').split("hotspot_")[1];
-	    		// TODO core hotspot click
-
 	    		// hide clicked hotspot if already visible
 	    		if ($("#popup_"+id).is(":visible")) {
 	    			$("#popup_"+id).hide();
@@ -720,6 +739,13 @@
 			    clearTimeout(timer);
 			    // no scroll event detected for 100ms - select snapped-to element
 			    timer = setTimeout(function () {
+			    	// unzoom from all cards if we scroll to header
+			   //  	if ($('#infographic-container').scrollTop() == 0) {
+    		// 			$(".hotspot-container").hide();
+				  //   	$('.popup-container').hide();
+				  //   	$(".card").removeClass("zoom");
+						// return;
+			   //  	}
 			    	var windowHeight = $(window).height();
 		    		var cardHeight = $("#card_project_mgmt").height();
 		    		var offset = (windowHeight - cardHeight) / 2;
