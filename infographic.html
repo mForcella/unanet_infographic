@@ -26,10 +26,6 @@
 		height: 100vh;
 		scroll-snap-type: y proximity;
 	}
-	.infographic-container .row {
-		display: block;
-		text-align: center;
-	}
 	.infographic-container img {
 		position: relative;
 		-webkit-transition-duration: 1.2s;
@@ -47,6 +43,7 @@
 		height: 48vw;
 		padding-top: 50px;
 		margin-bottom: -28vw;
+		/* TODO always make sure top element has enough space to snap? */
 	}
 	.footer {
 		width: 90%;
@@ -67,6 +64,29 @@
 		-moz-transform:scale(1.2);
 		-o-transform:scale(1.2);
 		filter: brightness(100%);
+	}
+	.hotspot-container {
+		text-align: left !important;
+	}
+	.title {
+		font-size: 18px;
+		font-weight: 600;
+		margin-bottom: 20px;
+	}
+	.text {
+		font-size: 13px;
+		font-weight: 400;
+	}
+	.row {
+		position: relative;
+		display: block;
+		text-align: center;
+	}
+	.box {
+		display: inline-block;
+		margin: 0 10px;
+		height: 13px;
+  		width: 13px;
 	}
 	.core {
 		max-width: 142px;
@@ -105,9 +125,6 @@
 		top: -100px;
 		left: calc(50% - 11px);
 	}
-	.hotspot-container {
-		text-align: left !important;
-	}
 	.line {
 		border-bottom: 1px solid #123859;
 		width: 700px !important;
@@ -121,6 +138,10 @@
 	.line-1a {
 		top: -173px;
 		left: calc(50% + 215px);
+	}
+	.line-2 {
+		top: -122px;
+		left: calc(50% + 305px);
 	}
 	.line-2a {
 		display: inline-block !important;
@@ -143,15 +164,6 @@
 		top: -87px;
 		left: calc(50% - 710px);
 	}
-	.title {
-		font-size: 18px;
-		font-weight: 600;
-		margin-bottom: 20px;
-	}
-	.text {
-		font-size: 13px;
-		font-weight: 400;
-	}
 	.popup {
 		position: absolute;
 		z-index: 999;
@@ -169,6 +181,10 @@
 		top: -78px;
 		right: 30px;
 	}
+	.popup-2a {
+		top: -152px;
+		right: 30px;
+	}
 	.popup-3 {
 		top: -12px;
 		left: 30px;
@@ -177,15 +193,6 @@
 	.popup-core {
 		top: -117px;
 		left: 30px;
-	}
-	.row {
-		position: relative;
-	}
-	.box {
-		display: inline-block;
-		margin: 0 10px;
-		height: 13px;
-  		width: 13px;
 	}
 
 	/* desktop - small */
@@ -233,6 +240,10 @@
 			top: -136px;
 			left: calc(50% + 165px);
 		}
+		.line-2 {
+			top: -91px;
+			left: calc(50% + 235px);
+		}
 		.line-2a {
 			top: -53px;
 			left: calc(50% + 220px);
@@ -258,6 +269,9 @@
 		}
 		.popup-2 {
 			top: -48px;
+		}
+		.popup-2a {
+			top: -123px;
 		}
 		.popup-3 {
 			top: -14px;
@@ -315,6 +329,10 @@
 			top: -82px;
 			left: calc(50% + 105px);
 		}
+		.line-2 {
+			top: -52px;
+			left: calc(50% + 150px);
+		}
 		.line-2a {
 			top: -13px;
 			left: calc(50% + 135px);
@@ -346,6 +364,9 @@
 			top: -10px;
 			right: 10px;
 		}
+		.popup-2a {
+			top: -86px;
+		}
 		.popup-3 {
 			top: -20px;
 			left: 10px;
@@ -365,91 +386,56 @@
 			padding-top: 20px;
 		}
 		.card {
-			max-width: 200px;
-			margin-top: -77px;
+			max-width: 75%;
+			margin-top: -25vw;
 		}
 		.core {
-			max-width: 43px;
-			margin-top: -105px !important;
+			max-width: 16%;
+			margin-top: -40vw !important;
 		}
 		.core-separated {
-			margin-top: -85px !important;
+			margin-top: -33vw !important;
 		}
 		.hotspot {
-			max-width: 10px;
+			max-width: 3%;
 		}
-
 		.hotspot-1 {
-			top: -66px;
-			left: calc(50% + 51px);
+			top: -22vw;
+			left: calc(50% + 18vw);
 		}
 		.hotspot-1a {
-			top: -61px;
-			left: calc(50% + 65px);
+			top: -20vw;
+			left: calc(50% + 20vw);
 		}
 		.hotspot-2 {
-			top: -43px;
-			left: calc(50% + 93px);
+			top: -12vw;
+			left: calc(50% + 35vw);
 		}
 		.hotspot-3 {
-			top: 0px;
-			left: calc(50% - 90px);
+			top: 1vw;
+			left: calc(50% - 35vw);
 		}
 		.core-hotspot {
-			top: -33px;
-			left: calc(50% - 4px);
+			top: -11vw;
+			left: calc(50% - 1vw);
 		}
-
-		.line-1 {
-			top: -62px;
-			left: calc(50% + 60px);
+		.line {
+			display: none !important;
 		}
-		.line-1a {
-			top: -57px;
-			left: calc(50% + 74px);
-		}
-		.line-2a {
-			top: 0px;
-			left: calc(50% + 85px);
-		}
-		.line-2b {
-			top: 35px;
-			left: calc(50% + 170px);
-		}
-		.line-3 {
-			top: 5px;
-			left: calc(50% - 790px);
-		}
-		.line-core {
-			top: -28px;
-			left: calc(50% - 700px);
-		}
-
 		.popup {
-			width: 140px;
-		}
-		.popup-1 {
-			top: -95px;
-		}
-		.popup-1a {
-			top: -86px;
-		}
-		.popup-2 {
-			top: 5px;
-		}
-		.popup-3 {
-			top: -25px;
-			width: calc(100% - 25px) !important;
-		}
-		.popup-core {
-			top: -60px;
-		}
-
-		.title {
-			font-size: 14px;
-		}
-		.text {
-			font-size: 12px;
+			opacity: 0.95;
+			background-color: #f2f2f2;
+			border-width: 1px;
+			border-color: #123859;
+			border-style: solid;
+			width: 50% !important;
+			z-index: 9999;
+			top: -20vh !important;
+			left: 0;
+			right: 0;
+			margin: auto;
+			padding: 20px;
+			border-radius: 10px;
 		}
 	}
 
@@ -777,9 +763,8 @@
 				</div>
 				<img id="hotspot_2_pipeline" class="hotspot hotspot-2" src="hotspot.png">
 				<div id="popup_2_pipeline" class="popup-container">
-					<div class="line line-2a"></div>
-					<div class="line line-2b"></div>
-					<div class="popup popup-2">
+					<div class="line line-2"></div>
+					<div class="popup popup-2a">
 						<div class="title">PERSONAS</div>
 						<div class="text">
 							<b>C-Suite:</b> Efficiently create business
@@ -821,6 +806,7 @@
     <script type="text/javascript">
 
     	var clicked = false;
+    	var current_index = 10;
 
     	const cards = [
     		'#card_project_mgmt',
@@ -909,8 +895,11 @@
     		disableScroll();
 
     		// shift element to center of screen
-    		var adjust = $(id).offset().top - ($(window).height()/2 - $(id).height()/2);
-			$('#infographic-container').animate({scrollTop: $('#infographic-container').scrollTop() + adjust}, 1200, function() {
+    		var card_top = $(id).offset().top;
+    		var scale_adjust = $(id).height()*0.2;
+    		card_top = current_index > cards.indexOf(id) ? card_top + scale_adjust : card_top - scale_adjust;
+    		var scrolltop_adjust = card_top - ($(window).height()/2 - $(id).height()/2);
+			$('#infographic-container').animate({scrollTop: $('#infographic-container').scrollTop() + scrolltop_adjust}, 1200, function() {
 				enableScroll();
 			});
 
@@ -922,6 +911,7 @@
 			cards.forEach(function(card) {
 				if (card == (id)) {
 					var index = cards.indexOf(card);
+					current_index = index;
 
 					// show hotpots after zoom animation is complete
 					$(card).addClass("zoom");
@@ -1004,19 +994,17 @@
 		    		var cardHeight = $("#card_project_mgmt").height();
 		    		var offset = (windowHeight - cardHeight) / 2;
 		    		var current_card;
-		    		// console.log($('#infographic-container').scrollTop());
-
-			    	// // find currently snapped element
-			    	// cards.forEach(function(card) {
-			    	// 	var top = $(card).offset().top;
-			    	// 	if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
-			    	// 		current_card = card;
-			    	// 	}
-			    	// });
-			    	// // zoom to element if not already selected
-			    	// if (!$(current_card).hasClass('zoom')) {
-			    	// 	scrollTo(current_card);
-			    	// }
+			    	// find currently snapped element
+			    	cards.forEach(function(card) {
+			    		var top = $(card).offset().top;
+			    		if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
+			    			current_card = card;
+			    		}
+			    	});
+			    	// zoom to element if not already selected
+			    	if (!$(current_card).hasClass('zoom') && !clicked) {
+			    		scrollTo(current_card);
+			    	}
 
 			    }, 100);
 			});
