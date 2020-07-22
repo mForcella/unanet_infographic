@@ -43,12 +43,13 @@
 		height: 48vw;
 		padding-top: 50px;
 		margin-bottom: -28vw;
-		/* TODO always make sure top element has enough space to snap? */
+		scroll-snap-align: center;
 	}
 	.footer {
 		width: 90%;
 		padding-bottom: 50px;
 		margin-top: 50px;
+		scroll-snap-align: center;
 	}
 	.card {
 		max-width: 650px;
@@ -350,7 +351,8 @@
 		}
 
 		.popup {
-			width: 140px;
+			/*width: 140px;*/
+			width: 20%;
 		}
 		.popup-1 {
 			top: -119px;
@@ -447,6 +449,7 @@
 	<!-- Begin Infographic Content -->
 	<div id="infographic-container" class="infographic-container">
 		<div class="header">UNLOCK YOUR DATA</div>
+		<div class="buffer"></div>
 		<div class="row">
 			<img id="core_1" src="core_top.png" class="core core-top" style="z-index: 110;">
 		</div>
@@ -796,6 +799,7 @@
 		<div class="row">
 			<img id="core_6" src="core.png" class="core core-bottom" style="z-index: 100;">
 		</div>
+		<div class="buffer"></div>
 		<img src="footer.png" class="footer">
 	</div>
 	<!-- End Infographic Content -->
@@ -937,9 +941,27 @@
 			});
     	}
 
+	    // make sure there is enough space to center top card in screen
+    	function checkBuffer() {
+    		var scroll_top = $('#infographic-container').scrollTop();
+    		var top = $('#card_project_mgmt').offset().top;
+    		var distance = scroll_top + top - $(".buffer").height();
+    		var height = $(window).height()/2 - $('#card_project_mgmt').height()/2;
+    		if (height > distance) {
+    			$(".buffer").height(height - distance);
+    		} else {
+    			$(".buffer").height(0);
+    		}
+    	}
+
 	    window.onload = function() {
 
 	    	$('map').imageMapResize();
+	    	checkBuffer();
+
+	    	$(window).on('resize', function(){
+	    		checkBuffer();
+			});
 
 	    	// dismiss popups on screen click
 	    	$(window).click(function(e) {
@@ -1005,7 +1027,6 @@
 			    	if (!$(current_card).hasClass('zoom') && !clicked) {
 			    		scrollTo(current_card);
 			    	}
-
 			    }, 100);
 			});
 
