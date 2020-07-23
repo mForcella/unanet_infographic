@@ -811,6 +811,7 @@
 
     	var clicked = false;
     	var current_index = 10;
+	    var timer = null;
 
     	const cards = [
     		'#card_project_mgmt',
@@ -871,7 +872,6 @@
 			window.addEventListener(wheelEvent, preventDefault, wheelOpt);
 			window.addEventListener('touchmove', preventDefault, wheelOpt);
 			window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-			$("#infographic-container").css("scroll-snap-type", "none");
     		clicked = true;
 		}
 
@@ -880,7 +880,6 @@
 			window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
 			window.removeEventListener('touchmove', preventDefault, wheelOpt);
 			window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-			$("#infographic-container").css("scroll-snap-type", "y mandatory");
 			clicked = false;
 		}
 
@@ -905,6 +904,7 @@
     		var scrolltop_adjust = card_top - ($(window).height()/2 - $(id).height()/2);
 			$('#infographic-container').animate({scrollTop: $('#infographic-container').scrollTop() + scrolltop_adjust}, 1200, function() {
 				enableScroll();
+				$("#infographic-container").css("scroll-snap-type", "y mandatory");
 			});
 
 			// zoom to card layer
@@ -954,6 +954,30 @@
     		}
     	}
 
+    	// detect when scroll-snapping is complete
+    	// source: https://developpaper.com/implementation-of-css-scroll-snap-event-stop-and-element-position-detection/
+    	function scrollListener() {
+		    clearTimeout(timer);
+		    // no scroll event detected for 100ms - select snapped-to element
+		    timer = setTimeout(function () {
+		    	var windowHeight = $(window).height();
+	    		var cardHeight = $("#card_project_mgmt").height();
+	    		var offset = (windowHeight - cardHeight) / 2;
+	    		var current_card;
+		    	// find currently snapped element
+		    	cards.forEach(function(card) {
+		    		var top = $(card).offset().top;
+		    		if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
+		    			current_card = card;
+		    		}
+		    	});
+		    	// zoom to element if not already selected
+		    	if (!$(current_card).hasClass('zoom') && !clicked) {
+		    		scrollTo(current_card);
+		    	}
+		    }, 100);
+    	}
+
 	    window.onload = function() {
 
 	    	$('map').imageMapResize();
@@ -975,6 +999,8 @@
     			if (!clicked) {
 		    		var id = $(this).attr('id').split("map_")[1];
 		    		if (id != "core") {
+		    			// temporarily disable scroll snapping for smooth animation
+						$("#infographic-container").css("scroll-snap-type", "none");
 	    				scrollTo("#card_"+id);
 		    		}
     			}
@@ -1004,31 +1030,9 @@
 	    		}
 	    	});
 
-	    	// detect when scroll-snapping is complete
-	    	// source: https://developpaper.com/implementation-of-css-scroll-snap-event-stop-and-element-position-detection/
-	    	var timer = null;
+	    	// add scroll snap listener
 			var container = document.getElementById('infographic-container');
-			container.addEventListener('scroll', function () {
-			    clearTimeout(timer);
-			    // no scroll event detected for 100ms - select snapped-to element
-			    timer = setTimeout(function () {
-			    	var windowHeight = $(window).height();
-		    		var cardHeight = $("#card_project_mgmt").height();
-		    		var offset = (windowHeight - cardHeight) / 2;
-		    		var current_card;
-			    	// find currently snapped element
-			    	cards.forEach(function(card) {
-			    		var top = $(card).offset().top;
-			    		if (current_card == null || Math.abs(offset - top) < Math.abs(offset - $(current_card).offset().top)) {
-			    			current_card = card;
-			    		}
-			    	});
-			    	// zoom to element if not already selected
-			    	if (!$(current_card).hasClass('zoom') && !clicked) {
-			    		scrollTo(current_card);
-			    	}
-			    }, 100);
-			});
+			container.addEventListener('scroll', scrollListener);
 
 			// select first card on page load
 	    	setTimeout(scrollTo, 1000, "#card_project_mgmt");
