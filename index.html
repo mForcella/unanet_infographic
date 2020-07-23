@@ -45,6 +45,11 @@
 		margin-bottom: -28vw;
 		scroll-snap-align: center;
 	}
+	@media only screen and (min-width: 1364px) {
+		.header {
+			font-size: 7em;
+		}
+	}
 	.footer {
 		width: 90%;
 		padding-bottom: 50px;
@@ -64,6 +69,7 @@
 		-webkit-transform:scale(1.2);
 		-moz-transform:scale(1.2);
 		-o-transform:scale(1.2);
+		-ms-transform:scale(1.2);
 		filter: brightness(100%);
 	}
 	.hotspot-container {
@@ -151,6 +157,7 @@
 		width: 100px !important;
 		-moz-transform: rotate(45deg);
 		-webkit-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
 		transform: rotate(45deg);
 	}
 	.line-2b {
@@ -351,7 +358,6 @@
 		}
 
 		.popup {
-			/*width: 140px;*/
 			width: 20%;
 		}
 		.popup-1 {
@@ -911,6 +917,7 @@
 			zoomToCard(id);
     	}
 
+    	// zoom to selected card and separate adjacent layers
     	function zoomToCard(id) {
 			cards.forEach(function(card) {
 				if (card == (id)) {
@@ -989,7 +996,7 @@
 
 	    	// dismiss popups on screen click
 	    	$(window).click(function(e) {
-			    if (!e.target.className.includes("hotspot")) {
+			    if (e.target.className.indexOf("hotspot") == -1) {
 	    			$('.popup-container').hide();
 			    }
 			});
