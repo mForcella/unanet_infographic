@@ -13,7 +13,8 @@
 		height: 100vh;
 		font-family: 'Montserrat', sans-serif;
 		color: #123859;
-		-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+		-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+		background: linear-gradient(#ffffff, #f4f4f4);
 	}
 	::-webkit-scrollbar {
 	    width: 0px;
@@ -27,7 +28,8 @@
 		overflow-y: scroll;
 		overflow-x: hidden;
 		height: 100vh;
-	}.infographic-container img {
+	}
+	.infographic-container img {
 		position: relative;
 	}
 	.infographic-container img, .infographic-container div, .infographic-container {
@@ -67,21 +69,20 @@
 	.card.hovered {
 		filter: brightness(100%);
 	}
-	/* TODO spacing too much for mobile? */
 	.card.intro {
-		max-width: 35%;
-		margin-top: -14% !important;
+		max-width: 31%;
+		margin-top: -12% !important;
+		margin-left: -4%;
 		transform: scaleY(0.6);
 	}
 	.core.intro {
-		max-width: 5.6% !important;
-		margin-top: -19% !important;
+		max-width: 4.6% !important;
+		margin-top: -18% !important;
+		margin-left: -4%;
 		transform: scaleY(0.7);
 	}
 	.infographic-container.intro {
-		transform: rotate(1deg);
-		margin-left: -5px;
-		margin-top: -10px;
+		/*margin-top: -10px;*/
 	}
 	.header.intro {
 		opacity: 0;
@@ -92,6 +93,9 @@
 		-o-transform:scale(1.2);
 		-ms-transform:scale(1.2);
 		filter: brightness(100%);
+	}
+	.core-separated {
+		margin-top: -275px !important;
 	}
 	.hotspot-container {
 		text-align: left !important;
@@ -119,9 +123,6 @@
 	.core {
 		max-width: 142px;
 		margin-top: -350px !important;
-	}
-	.core-separated {
-		margin-top: -275px !important;
 	}
 	.hotspot {
 		position: absolute !important;
@@ -237,6 +238,9 @@
 		.core-separated {
 			margin-top: -215px !important;
 		}
+		.row.intro {
+			margin: -0.3% auto;
+		}
 		.hotspot {
 			max-width: 21px;
 		}
@@ -310,7 +314,7 @@
 		}
 	}
 
-	/* tablet */
+	/* small desktop - tablet */
 	@media only screen and (max-width: 1166px) {
 		.header {
 			margin-bottom: -27vw;
@@ -322,6 +326,9 @@
 		.core {
 			max-width: 65px;
 			margin-top: -165px !important;
+		}
+		.row.intro {
+			margin: -0.5% auto;
 		}
 		.core-separated {
 			margin-top: -135px !important;
@@ -413,7 +420,7 @@
 		}
 	}
 
-	/* mobile */
+	/* tablet - mobile */
 	@media only screen and (max-width: 749px) {
 		.header {
 			margin-bottom: -24vw;
@@ -426,6 +433,9 @@
 		.core {
 			max-width: 16%;
 			margin-top: -40vw !important;
+		}
+		.row.intro {
+			margin: -1.1% auto;
 		}
 		.core-separated {
 			margin-top: -33vw !important;
@@ -473,6 +483,20 @@
 		}
 	}
 
+	/* mobile */
+	@media only screen and (max-width: 549px) {
+		.row.intro {
+			margin: -1.7% auto;
+		}
+	}
+
+	/* small-mobile */
+	@media only screen and (max-width: 449px) {
+		.row.intro {
+			margin: -2.2% auto;
+		}
+	}
+
 </style>
 </head>
 <!-- End CSS -->
@@ -488,11 +512,11 @@
 		<div class="header">UNLOCK YOUR DATA</div>
 		<div class="buffer"></div>
 		<div id="infographic-rows">
-			<div class="row">
+			<div class="row intro">
 				<img id="core_1_intro" src="assets/img/core_top.png" class="core intro core-top" style="z-index: 110;">
 				<img id="core_1" src="assets/img/core_top.png" class="core core-top" style="z-index: 110; display: none;">
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="card_project_mgmt_intro" src="assets/img/card_project_mgmt_scaled.png" class="card intro" style="z-index: 109;">
 				<img id="card_project_mgmt" src="assets/img/card_project_mgmt_scaled.png" class="card intro" style="z-index: 109; display: none;" usemap="#map_project_mgmt">
 				<map name="map_project_mgmt" class="image-map">
@@ -562,11 +586,11 @@
 						</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="core_2_intro" src="assets/img/core.png" class="core intro" style="z-index: 108;">
 				<img id="core_2" src="assets/img/core.png" class="core" style="z-index: 108; display: none;">
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="card_track_time_intro" src="assets/img/card_track_time_scaled.png" class="card intro" style="z-index: 107;">
 				<img id="card_track_time" src="assets/img/card_track_time_scaled.png" class="card intro" style="z-index: 107; display: none;" usemap="#map_track_time">
 				<map name="map_track_time" class="image-map">
@@ -636,11 +660,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="core_3_intro" src="assets/img/core.png" class="core intro" style="z-index: 106;">
 				<img id="core_3" src="assets/img/core.png" class="core" style="z-index: 106; display: none;">
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="card_forecast_intro" src="assets/img/card_forecast_scaled.png" class="card intro" style="z-index: 105;">
 				<img id="card_forecast" src="assets/img/card_forecast_scaled.png" class="card intro" style="z-index: 105; display: none;" usemap="#map_forecast">
 				<map name="map_forecast" class="image-map">
@@ -711,11 +735,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="core_4_intro" src="assets/img/core.png" class="core intro" style="z-index: 104;">
 				<img id="core_4" src="assets/img/core.png" class="core" style="z-index: 104; display: none;">
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="card_financials_intro" src="assets/img/card_financials_scaled.png" class="card intro" style="z-index: 103;">
 				<img id="card_financials" src="assets/img/card_financials_scaled.png" class="card intro" style="z-index: 103; display: none;" usemap="#map_financials">
 				<map name="map_financials" class="image-map">
@@ -784,11 +808,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="core_5_intro" src="assets/img/core.png" class="core intro" style="z-index: 102;">
 				<img id="core_5" src="assets/img/core.png" class="core" style="z-index: 102; display: none;">
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="card_pipeline_intro" src="assets/img/card_pipeline_scaled.png" class="card intro" style="z-index: 101;">
 				<img id="card_pipeline" src="assets/img/card_pipeline_scaled.png" class="card intro" style="z-index: 101; display: none;" usemap="#map_pipeline">
 				<map name="map_pipeline" class="image-map">
@@ -839,7 +863,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row intro">
 				<img id="core_6" src="assets/img/core.png" class="core intro core-bottom" style="z-index: 100;">
 			</div>
 		</div>
@@ -1039,6 +1063,7 @@
 	    			setTimeout(function(){
 		    			$(".card").removeClass("intro");
 		    			$(".core").removeClass("intro");
+		    			$(".row").removeClass("intro");
 	    				setTimeout(function(){
 			    			$(".header").removeClass("intro");
 			    			// swap out intro images to make sure click and hover effects are working
@@ -1131,12 +1156,15 @@
 			var container = document.getElementById('infographic-container');
 			container.addEventListener('scroll', scrollListener);
 
-			// center infographic vertically
-			scrollTo("#card_track_time_intro", false);
 			// add buffer if infographic too small for screen
 			if ($('#infographic-rows').height() < $(window).height()) {
     			$(".buffer").animate({ height: $(window).height()/2 - $('#infographic-rows').height()/2 }, 100);
 			}
+
+			// center infographic
+			$('#infographic-container').animate({scrollTop: $('#infographic-container').scrollTop() + $("#video").height()*0.2}, 1200, function() {
+			});
+
 	    }
 
     </script>
