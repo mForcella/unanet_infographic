@@ -52,14 +52,14 @@ try {
 	}));
 } catch(e) {}
 
-// Chrome requires { passive: false }
+// Chrome desktop and modern mobile browsers require { passive: false }
 var wheelOpt = supportsPassive ? { passive: false } : false;
 var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
 function disableScroll() {
 	window.addEventListener('DOMMouseScroll', preventDefault, false);
 	window.addEventListener(wheelEvent, preventDefault, wheelOpt);
-	window.addEventListener('touchmove', preventDefault, wheelOpt);
+	// window.addEventListener('touchmove', preventDefault, wheelOpt);
 	window.addEventListener('keydown', preventDefaultForScrollKeys, false);
 	clicked = true;
 }
@@ -67,7 +67,7 @@ function disableScroll() {
 function enableScroll() {
 	window.removeEventListener('DOMMouseScroll', preventDefault, false);
 	window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-	window.removeEventListener('touchmove', preventDefault, wheelOpt);
+	// window.removeEventListener('touchmove', preventDefault, wheelOpt);
 	window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
 	clicked = false;
 }
@@ -149,7 +149,7 @@ function checkBuffer() {
 	}
 }
 
-// detect when scroll-snapping is complete
+// detect when scrolling is done and select nearest card layer
 // source: https://developpaper.com/implementation-of-css-scroll-snap-event-stop-and-element-position-detection/
 function scrollListener() {
     clearTimeout(timer);
@@ -273,7 +273,7 @@ window.onload = function() {
     	}
 	});
 
-	// add scroll snap listener
+	// add scroll listener
 	var container = document.getElementById('infographic-container');
 	container.addEventListener('scroll', scrollListener);
 
