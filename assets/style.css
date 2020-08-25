@@ -39,7 +39,6 @@ html, body {
 .header {
 	text-align: center;
 	font-size: 8vw;
-	color: white;
 	font-weight: 600;
 	background-image: url('img/header_background.png');
 	background-size: contain;
